@@ -4,7 +4,7 @@ import LearningResource from "./LearningResource.vue";
 import {inject} from "vue";
 
 const resources = inject('resources');
-console.log(resources)
+
 </script>
 
 <template>

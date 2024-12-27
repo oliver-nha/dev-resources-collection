@@ -1,38 +1,36 @@
 <script setup>
-import BaseButton from "@/components/UI/BaseButton.vue";
+import BaseButton from "../UI/BaseButton.vue";
+import BaseCard from "../UI/BaseCard.vue";
 
 defineProps(['id', 'title', 'description', 'link']);
 </script>
 
 <template>
-  <li class="resource-item">
-    <base-card>
+  <li class="resource">
+    <BaseCard>
       <div class="resource-header">
         <h3>{{ title }}</h3>
-        <base-button mode="flat">
-          <span class="btn-text">Delete</span>
-        </base-button>
+        <BaseButton mode="flat">Delete</BaseButton>
       </div>
+
       <p class="description">{{ description }}</p>
-      <nav class="resource-nav">
-        <a :href="link" target="_blank" rel="noopener noreferrer">
+
+      <div class="resource-actions">
+        <a :href="link" target="_blank" rel="noopener noreferrer" class="resource-link">
           View Resource
-          <span class="arrow">→</span>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
         </a>
-      </nav>
-    </base-card>
+      </div>
+    </BaseCard>
   </li>
 </template>
 
 <style scoped>
-.resource-item {
-  margin: 2rem auto;
-  max-width: 48rem;
-  transition: transform 0.2s ease;
-}
-
-.resource-item:hover {
-  transform: translateY(-2px);
+.resource {
+  list-style: none;
+  margin-bottom: 1.5rem;
 }
 
 .resource-header {
@@ -40,45 +38,40 @@ defineProps(['id', 'title', 'description', 'link']);
   justify-content: space-between;
   align-items: center;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e2e8f0;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #111827;
-  margin: 0;
+  color: var(--text-primary);
 }
 
 .description {
   margin: 1rem 0;
-  color: #4b5563;
-  line-height: 1.5;
+  color: var(--text-secondary);
 }
 
-.resource-nav {
+.resource-actions {
   margin-top: 1.5rem;
 }
 
-.resource-nav a {
-  text-decoration: none;
-  color: #2563eb;
-  font-weight: 500;
+.resource-link {
   display: inline-flex;
   align-items: center;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
   transition: color 0.2s ease;
 }
 
-.resource-nav a:hover {
-  color: #1d4ed8;
+.resource-link:hover {
+  color: var(--primary-dark);
 }
 
-.arrow {
+.icon {
+  width: 1.25rem;
+  height: 1.25rem;
   margin-left: 0.5rem;
-  font-size: 1.1em;
-}
-
-.btn-text {
-  display: inline-block;
 }
 </style>

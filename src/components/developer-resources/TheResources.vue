@@ -117,10 +117,10 @@ provide('resources', storedResources);
 </script>
 <template>
      <AppTabs >
-       <AppTab title="stored-resource">
+       <AppTab title="StoredResource">
           <StoredResource />
        </AppTab>
-      <AppTab title="add-resource">
+      <AppTab title="AddResource">
         <AddResource />
       </AppTab>
      </AppTabs>

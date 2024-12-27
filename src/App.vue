@@ -1,24 +1,25 @@
-// App.vue
 <script setup>
-
-
 import TheHeader from "./components/layouts/TheHeader.vue";
 import TheResources from "@/components/developer-resources/TheResources.vue";
-
 </script>
 
 <template>
   <div class="app">
-    <TheHeader title="Dev Resources" />
+    <TheHeader title="Learning Resources" />
     <TheResources />
   </div>
 </template>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 :root {
-  --background-color: #f3f4f6;
+  --primary-color: #6366f1;
+  --primary-dark: #4f46e5;
+  --background-color: #f8fafc;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 * {
@@ -28,18 +29,13 @@ import TheResources from "@/components/developer-resources/TheResources.vue";
 }
 
 html {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   background-color: var(--background-color);
 }
 
 body {
-  margin: 0;
-  line-height: 1.5;
-  color: #111827;
-}
-
-main {
-  padding: 2rem 0;
+  color: var(--text-primary);
+  line-height: 1.6;
 }
 
 .app {

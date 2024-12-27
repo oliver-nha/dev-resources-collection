@@ -47,16 +47,27 @@ provide('AppTabs', {
   // but notice we use readonly to keep the child from directly mutating it
   activeTab: readonly(activeTab),
 });
-const getTab = (tab) => computed(() => (activeTab.value === tab ? null : "flat"));
+const getTabClass = (tab) => {
+  return activeTab.value === tab ? null : 'flat';
+};
 </script>
 
 <template>
+  <div class="main-page">
   <div class="tabs">
-    <div class="tabs tabs-bordered">
-      <base-button v-for="tab in tabs" :key="tab" class="tab" :mode="getTab(tab)"  @click="activateTab(tab)">
-        {{ tab }}
-      </base-button>
-    </div>
+    <base-button v-for="tab in tabs" :key="tab" class="tab" :mode="getTabClass(tab)"  @click="activateTab(tab)">
+      {{ tab }}
+    </base-button>
+  </div>
     <slot></slot>
   </div>
 </template>
+<style scoped>
+.tabs{
+  margin: 30px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+</style>
