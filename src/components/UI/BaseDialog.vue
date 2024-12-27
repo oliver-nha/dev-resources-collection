@@ -11,22 +11,24 @@ defineEmits(['close'])
 </script>
 
 <template>
-  <div class="modal-backdrop" @click="$emit('close')"></div>
-<dialog open>
-  <header>
-    <slot name="header">
-      <h2>{{ title }}</h2>
-    </slot>
-  </header>
-  <section>
-    <slot></slot>
-  </section>
-  <menu>
-    <slot name="actions">
-      <base-button @click="$emit('close')">Close</base-button>
-    </slot>
-  </menu>
-</dialog>
+ <teleport to="body">
+   <div class="modal-backdrop" @click="$emit('close')"></div>
+   <dialog open>
+     <header>
+       <slot name="header">
+         <h2>{{ title }}</h2>
+       </slot>
+     </header>
+     <section>
+       <slot></slot>
+     </section>
+     <menu>
+       <slot name="actions">
+         <base-button @click="$emit('close')">Close</base-button>
+       </slot>
+     </menu>
+   </dialog>
+ </teleport>
 </template>
 
 <style scoped>
