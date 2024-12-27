@@ -61,7 +61,13 @@ const addResource = (title, description, link) => {
   storedResources.value.unshift(newResource);
   setSelectedTab('stored-resource');
 }
+const removeResource = (id) => {
+  const resIndex = storedResources.value.findIndex((res) => res.id === id);
+  storedResources.value.splice(resIndex, 1);
+}
 provide('addResource', addResource);
+provide('removeResource', removeResource);
+
 </script>
 
 <template>

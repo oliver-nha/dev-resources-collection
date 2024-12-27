@@ -1,8 +1,10 @@
 <script setup>
 import BaseButton from "../UI/BaseButton.vue";
 import BaseCard from "../UI/BaseCard.vue";
+import {inject} from "vue";
 
 defineProps(['id', 'title', 'description', 'link']);
+const removeResource = inject('removeResource');
 </script>
 
 <template>
@@ -10,7 +12,7 @@ defineProps(['id', 'title', 'description', 'link']);
     <BaseCard>
       <div class="resource-header">
         <h3>{{ title }}</h3>
-        <BaseButton mode="flat">Delete</BaseButton>
+        <BaseButton mode="flat" @click="removeResource(id)">Delete</BaseButton>
       </div>
 
       <p class="description">{{ description }}</p>
