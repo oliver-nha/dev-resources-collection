@@ -1,31 +1,16 @@
 // App.vue
 <script setup>
-import { reactive } from "vue";
-import StoredResource from "./components/developer-resources/StoredResource.vue";
-import TheHeader from "./components/layouts/TheHeader.vue";
 
-const storedResource = reactive([
-  {
-    id: 'official-guide',
-    title: 'Official Guide',
-    description: 'The official Vue 3 Guide',
-    link: 'https://vuejs.org/guide'
-  },
-  {
-    id: 'react-guide',
-    title: 'React Guide',
-    description: 'The official React Guide',
-    link: 'https://reactjs.org/docs/getting-started.html'
-  }
-]);
+
+import TheHeader from "./components/layouts/TheHeader.vue";
+import TheResources from "@/components/developer-resources/TheResources.vue";
+
 </script>
 
 <template>
   <div class="app">
     <TheHeader title="Dev Resources" />
-    <main>
-      <StoredResource :resources="storedResource" />
-    </main>
+    <TheResources />
   </div>
 </template>
 

@@ -1,4 +1,6 @@
 <script setup>
+import BaseButton from "@/components/UI/BaseButton.vue";
+
 defineProps(['id', 'title', 'description', 'link']);
 </script>
 
@@ -7,9 +9,9 @@ defineProps(['id', 'title', 'description', 'link']);
     <base-card>
       <div class="resource-header">
         <h3>{{ title }}</h3>
-        <button class="delete-btn">
+        <base-button mode="flat">
           <span class="btn-text">Delete</span>
-        </button>
+        </base-button>
       </div>
       <p class="description">{{ description }}</p>
       <nav class="resource-nav">
@@ -74,21 +76,6 @@ h3 {
 .arrow {
   margin-left: 0.5rem;
   font-size: 1.1em;
-}
-
-.delete-btn {
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.delete-btn:hover {
-  background-color: #dc2626;
 }
 
 .btn-text {
