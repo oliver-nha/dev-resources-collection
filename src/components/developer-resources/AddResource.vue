@@ -1,9 +1,47 @@
 <script setup>
 import BaseCard from "../UI/BaseCard.vue";
 import BaseButton from "../UI/BaseButton.vue";
+import {inject, onMounted, ref, useTemplateRef} from "vue";
+import BaseDialog from "@/components/UI/BaseDialog.vue";
+ const addResource = inject('addResource');
+const enteredTitle = useTemplateRef('titleInput');
+const enteredDescription = useTemplateRef('descriptionInput');
+const enteredLink = useTemplateRef('linkInput');
+const inputIsInvalid = ref(false);
+onMounted(() => {
+  enteredTitle.value.focus();
+})
+
+const submitForm = () => {
+  const enteredTitleValue = enteredTitle.value.value;
+  const enteredDescriptionValue = enteredDescription.value.value;
+  const enteredLinkValue = enteredLink.value.value;
+
+  if(
+      enteredTitleValue.trim() === '' ||
+      enteredDescriptionValue.trim() === '' ||
+      enteredLinkValue.trim() === ''
+  ) {
+    inputIsInvalid.value = true;
+    return;
+  }
+  addResource(enteredTitleValue, enteredDescriptionValue, enteredLinkValue);
+};
+const confirmError = () => {
+  inputIsInvalid.value = false
+}
 </script>
 
 <template>
+  <BaseDialog v-if="inputIsInvalid" title="Invalid Input" @close="confirmError">
+    <template #default>
+      <p>Unfortunately, at least one input value is invalid.</p>
+      <p>Please check all inputs and try again.</p>
+    </template>
+    <template #actions>
+      <base-button @click="confirmError" mode="cta">Okay</base-button>
+    </template>
+  </BaseDialog>
   <div class="add-resource">
     <BaseCard>
       <form @submit.prevent="submitForm" class="form">
@@ -14,7 +52,8 @@ import BaseButton from "../UI/BaseButton.vue";
               id="title"
               name="title"
               class="form-input"
-              required
+              ref="titleInput"
+
           >
         </div>
 
@@ -25,7 +64,8 @@ import BaseButton from "../UI/BaseButton.vue";
               name="description"
               rows="3"
               class="form-input"
-              required
+              ref="descriptionInput"
+
           ></textarea>
         </div>
 
@@ -36,7 +76,8 @@ import BaseButton from "../UI/BaseButton.vue";
               id="link"
               name="link"
               class="form-input"
-              required
+              ref="linkInput"
+
           >
         </div>
 
